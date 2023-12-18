@@ -2,6 +2,7 @@
 using OnlineClassbook.Data;
 using OnlineClassbook.DTOs;
 using OnlineClassbook.Entities;
+using OnlineClassbook.Exceptions;
 
 namespace OnlineClassbook.Services;
 
@@ -24,10 +25,8 @@ public class StudentService: IStudentService
 
     public async Task<StudentToGetDTO> GetStudentById(int id)
     {
-        Student student = await _context.Students.FirstOrDefaultAsync(s => s.Id == id);
-        
-        if (student is null)
-            throw new Exception($"Student with Id '{id}' not found.");
+        Student student = await _context.Students.FirstOrDefaultAsync(s => s.Id == id)
+                          ?? throw new InvalidIdException($"Student with Id '{id}' not found.");
 
         return _mapper.Map<StudentToGetDTO>(student);
     }
@@ -47,10 +46,9 @@ public class StudentService: IStudentService
     public async Task<List<StudentToGetDTO>> DeleteStudentById(int id)
     {
         Student student = await _context.Students
-            .FirstOrDefaultAsync(c => c.Id == id);
-        
-        if (student is null)
-            throw new Exception($"Student with Id '{id}' not found.");
+            .Include(s => s.Address)
+            .FirstOrDefaultAsync(s => s.Id == id) 
+            ?? throw new InvalidIdException($"Student with Id '{id}' not found.");
 
         _context.Students.Remove(student);
 
@@ -64,10 +62,8 @@ public class StudentService: IStudentService
     public async Task<List<StudentToGetDTO>> UpdateStudent(StudentToUpdateDTO updateStudent)
     {
         Student student = await _context.Students
-            .FirstOrDefaultAsync(c => c.Id == updateStudent.Id);
-        
-        if (student is null)
-            throw new Exception($"Student with Id '{updateStudent.Id}' not found.");
+            .FirstOrDefaultAsync(s => s.Id == updateStudent.Id)
+            ?? throw new InvalidIdException($"Student with Id '{updateStudent.Id}' not found.");
 
         student.LastName = updateStudent.LastName;
         student.FirstName = updateStudent.FirstName;
@@ -84,12 +80,8 @@ public class StudentService: IStudentService
     {
         Student student = await _context.Students
             .Include(s => s.Address)
-            .FirstOrDefaultAsync(s => s.Id == studentId);
-        
-        if (student == null)
-        {
-            throw new Exception($"Student with Id '{studentId}' not found.");
-        }
+            .FirstOrDefaultAsync(s => s.Id == studentId)
+            ?? throw new InvalidIdException($"Student with Id '{studentId}' not found.");
 
         bool created = false;
         if (student.Address == null)
