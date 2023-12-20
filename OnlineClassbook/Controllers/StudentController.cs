@@ -1,5 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using OnlineClassbook.DTOs;
+﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc;
+using OnlineClassbook.DTOs.StudentDTOS;
 using OnlineClassbook.Services;
 using OnlineClassbook.Utils;
 
@@ -54,6 +55,7 @@ public class StudentController:ControllerBase
     /// <returns>List with students data</returns>
     [HttpDelete("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<StudentToGetDTO>))]
+    [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
     public async Task<ActionResult<List<StudentToGetDTO>>> DeleteById(int id) =>
         Ok(await _studentService.DeleteStudentById(id));
     
@@ -64,6 +66,7 @@ public class StudentController:ControllerBase
     /// <returns>List with students data</returns>
     [HttpPatch]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<StudentToGetDTO>))]
+    [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
     public async Task<ActionResult<List<StudentToGetDTO>>> UpdateStudent([FromBody] StudentToUpdateDTO updateStudent) =>
         Ok(await _studentService.UpdateStudent(updateStudent));
     
@@ -84,4 +87,17 @@ public class StudentController:ControllerBase
         }
         return Ok();
     }
+
+    /// <summary>
+    /// Assigns a student to a course
+    /// </summary>
+    /// <param name="studentId"></param>
+    /// <param name="courseId"></param>
+    [HttpGet("assign")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
+    [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+    public async Task<IActionResult> AssignStudentToCourse([Required] int studentId,[Required] int courseId) => 
+        Ok(await _studentService.AssignStudentToCourse(studentId, courseId));
+
 }

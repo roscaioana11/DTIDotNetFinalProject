@@ -9,4 +9,11 @@ public class Student
     public string FirstName { get; set; }
     public int Age { get; set; }
     public Address Address { get; set; }
+    public List<Course> Courses { get; set; } = new List<Course>();
+    public List<Mark> Marks { get; set; } = new List<Mark>();
+
+    public string GetFullName()
+    {
+        return $"{LastName} {FirstName}";
+    }
 }

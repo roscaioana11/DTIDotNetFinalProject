@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace OnlineClassbook.DTOs;
+namespace OnlineClassbook.DTOs.StudentDTOS;
 
 /// <summary>
-/// Addres that will be used for update
+/// Address that will be used for update
 /// </summary>
 public class AddressToUpdateDTO
 {

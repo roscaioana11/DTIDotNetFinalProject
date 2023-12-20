@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace OnlineClassbook.DTOs;
+namespace OnlineClassbook.DTOs.StudentDTOS;
 
 public class StudentToCreateDTO
 {

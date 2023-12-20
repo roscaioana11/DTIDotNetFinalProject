@@ -16,7 +16,7 @@
             <param name="id">Id of the student</param>
             <returns>student data</returns>
         </member>
-        <member name="M:OnlineClassbook.Controllers.StudentController.Add(OnlineClassbook.DTOs.StudentToCreateDTO)">
+        <member name="M:OnlineClassbook.Controllers.StudentController.Add(OnlineClassbook.DTOs.StudentDTOS.StudentToCreateDTO)">
             <summary>
             Creates a student
             </summary>
@@ -30,36 +30,36 @@
             <param name="id">Id of the student</param>
             <returns>List with students data</returns>
         </member>
-        <member name="M:OnlineClassbook.Controllers.StudentController.UpdateStudent(OnlineClassbook.DTOs.StudentToUpdateDTO)">
+        <member name="M:OnlineClassbook.Controllers.StudentController.UpdateStudent(OnlineClassbook.DTOs.StudentDTOS.StudentToUpdateDTO)">
             <summary>
             Updates a student
             </summary>
             <param name="updateStudent"></param>
             <returns>List with students data</returns>
         </member>
-        <member name="M:OnlineClassbook.Controllers.StudentController.UpdateStudentAddress(System.Int32,OnlineClassbook.DTOs.AddressToUpdateDTO)">
+        <member name="M:OnlineClassbook.Controllers.StudentController.UpdateStudentAddress(System.Int32,OnlineClassbook.DTOs.StudentDTOS.AddressToUpdateDTO)">
             <summary>
             Update or create a student's address
             </summary>
             <param name="id"></param>
             <param name="updateStudentAddress"></param>
         </member>
-        <member name="T:OnlineClassbook.DTOs.AddressToUpdateDTO">
+        <member name="T:OnlineClassbook.DTOs.StudentDTOS.AddressToUpdateDTO">
             <summary>
-            Addres that will be used for update
+            Address that will be used for update
             </summary>
         </member>
-        <member name="P:OnlineClassbook.DTOs.AddressToUpdateDTO.City">
+        <member name="P:OnlineClassbook.DTOs.StudentDTOS.AddressToUpdateDTO.City">
             <summary>
             City name
             </summary>
         </member>
-        <member name="P:OnlineClassbook.DTOs.AddressToUpdateDTO.Street">
+        <member name="P:OnlineClassbook.DTOs.StudentDTOS.AddressToUpdateDTO.Street">
             <summary>
             Street name
             </summary>
         </member>
-        <member name="P:OnlineClassbook.DTOs.AddressToUpdateDTO.Number">
+        <member name="P:OnlineClassbook.DTOs.StudentDTOS.AddressToUpdateDTO.Number">
             <summary>
             Street number
             </summary>

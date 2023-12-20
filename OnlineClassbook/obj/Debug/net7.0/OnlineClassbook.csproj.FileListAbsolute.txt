@@ -78,3 +78,4 @@ D:\CSharp and dotNET classes\homeworks\DTIDotNetFinalProject\OnlineClassbook\obj
 D:\CSharp and dotNET classes\homeworks\DTIDotNetFinalProject\OnlineClassbook\obj\Debug\net7.0\ref\OnlineClassbook.dll
 D:\CSharp and dotNET classes\homeworks\DTIDotNetFinalProject\OnlineClassbook\bin\Debug\net7.0\OnlineClassbook.xml
 D:\CSharp and dotNET classes\homeworks\DTIDotNetFinalProject\OnlineClassbook\obj\Debug\net7.0\OnlineClassbook.xml
+D:\CSharp and dotNET classes\homeworks\DTIDotNetFinalProject\OnlineClassbook\obj\Debug\net7.0\OnlineClassbook.sourcelink.json

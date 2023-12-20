@@ -1,4 +1,4 @@
-﻿namespace OnlineClassbook.DTOs;
+﻿namespace OnlineClassbook.DTOs.StudentDTOS;
 
 public class StudentToGetDTO
 {

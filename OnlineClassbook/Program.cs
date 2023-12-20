@@ -2,6 +2,7 @@ global using AutoMapper;
 global using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 using OnlineClassbook.Data;
+using OnlineClassbook.Filters;
 using OnlineClassbook.Services;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
@@ -11,7 +12,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<DataContext>(options => 
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(options =>
+{
+    options.Filters.Add<InvalidIdExceptionFilter>();
+    options.Filters.Add<InvalidExceptionFilter>();
+    options.Filters.Add<DuplicatedExceptionFilter>();
+});
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(d => AddSwaggerDocumentation(d));
