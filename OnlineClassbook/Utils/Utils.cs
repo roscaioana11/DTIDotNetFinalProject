@@ -1,6 +1,7 @@
 ﻿using OnlineClassbook.DTOs.CourseDTOS;
 using OnlineClassbook.DTOs.MarkDTOS;
 using OnlineClassbook.DTOs.StudentDTOS;
+using OnlineClassbook.DTOs.TeacherDTOS;
 using OnlineClassbook.Entities;
 
 namespace OnlineClassbook.Utils;
@@ -61,6 +62,34 @@ public static class Utils
             {
                 Value = mark.Value,
                 CourseId = mark.CourseId,
+                StudentId = mark.StudentId
+            };
+    
+    public static TeacherToGetDTO ToDto(this Teacher teacher)
+        => teacher is null ? null
+            : new TeacherToGetDTO
+            {
+                Name= teacher.Name,
+                Address = teacher.Address?.Street + teacher.Address?.Number,
+                Course= teacher.Course?.Name ?? "",
+                Rank = teacher.Rank.ToString()  
+            };
+
+    public static Teacher ToEntity(this TeacherToCreateDTO teacher)
+        => teacher is null ? null
+            : new Teacher
+            {
+                Name = teacher.Name,
+                Rank = Enum.Parse<TeacherRank>(teacher.Rank)
+            };
+    
+    public static MarkToGetFromTeacherDTO ToGivenMarkDto(this Mark mark)
+        => mark is null
+            ? null
+            : new MarkToGetFromTeacherDTO
+            {
+                Value = mark.Value,
+                CreatedAt = mark.CreatedAt,
                 StudentId = mark.StudentId
             };
 }

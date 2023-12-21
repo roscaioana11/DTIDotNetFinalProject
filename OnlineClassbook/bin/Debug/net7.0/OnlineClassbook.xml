@@ -4,6 +4,63 @@
         <name>OnlineClassbook</name>
     </assembly>
     <members>
+        <member name="M:OnlineClassbook.Controllers.CourseController.GetAllCourses">
+            <summary>
+            Gets a list with all courses.
+            </summary>
+            <returns>List with course data</returns>
+        </member>
+        <member name="M:OnlineClassbook.Controllers.CourseController.AddCourse(OnlineClassbook.DTOs.CourseDTOS.CourseToCreateDTO)">
+            <summary>
+            Creates a course.
+            </summary>
+            <param name="courseToCreate"></param>
+            <returns>The created course data</returns>
+        </member>
+        <member name="M:OnlineClassbook.Controllers.CourseController.DeleteCourseById(System.Int32)">
+            <summary>
+            Deletes a course by id
+            </summary>
+            <param name="courseId">Teacher id</param>
+            <returns>List with courses data</returns>
+        </member>
+        <member name="M:OnlineClassbook.Controllers.MarkController.AddMarks(OnlineClassbook.DTOs.MarkDTOS.MarkToCreateDTO)">
+            <summary>
+            Creates a mark
+            </summary>
+            <param name="markCreate">Student to create data</param>
+            <returns>The created mark's data</returns>
+        </member>
+        <member name="M:OnlineClassbook.Controllers.MarkController.GetMarksByStudentId(System.Int32)">
+            <summary>
+            Get marks for a student.
+            </summary>
+            <param name="studentId"></param>
+            <returns>A list of marks</returns>
+        </member>
+        <member name="M:OnlineClassbook.Controllers.MarkController.GetMarksByCourseIdAndStudentId(System.Int32,System.Int32)">
+            <summary>
+            Get marks for a student for the specified course.
+            </summary>
+            <param name="studentId"></param>
+            <param name="courseId"></param>
+            <returns>A list of marks</returns>
+        </member>
+        <member name="M:OnlineClassbook.Controllers.MarkController.GetAverageStudentCourseMarks(System.Int32,System.Int32)">
+            <summary>
+            Get a student's average marks for the specified course.
+            </summary>
+            <param name="studentId"></param>
+            <param name="courseId"></param>
+            <returns>A double, average result</returns>
+        </member>
+        <member name="M:OnlineClassbook.Controllers.MarkController.GetStudentOrderByMarksAverage(OnlineClassbook.Entities.Sorting)">
+            <summary>
+            Gets a list of students ordered by marks average.
+            </summary>
+            <param name="sort"></param>
+            <returns>List of students with marks average</returns>
+        </member>
         <member name="M:OnlineClassbook.Controllers.StudentController.GetAll">
             <summary>
             Returns all students from the db
@@ -34,15 +91,65 @@
             <summary>
             Updates a student
             </summary>
-            <param name="updateStudent"></param>
+            <param name="updateStudent">Student to be updated</param>
             <returns>List with students data</returns>
         </member>
         <member name="M:OnlineClassbook.Controllers.StudentController.UpdateStudentAddress(System.Int32,OnlineClassbook.DTOs.StudentDTOS.AddressToUpdateDTO)">
             <summary>
             Update or create a student's address
             </summary>
-            <param name="id"></param>
-            <param name="updateStudentAddress"></param>
+            <param name="id">Student id</param>
+            <param name="updateStudentAddress">Student address to be updated</param>
+        </member>
+        <member name="M:OnlineClassbook.Controllers.StudentController.AssignStudentToCourse(System.Int32,System.Int32)">
+            <summary>
+            Assigns a student to a course
+            </summary>
+            <param name="studentId">Student id</param>
+            <param name="courseId">Course id</param>
+        </member>
+        <member name="M:OnlineClassbook.Controllers.TeacherController.Add(OnlineClassbook.DTOs.TeacherDTOS.TeacherToCreateDTO)">
+            <summary>
+            Creates a teacher
+            </summary>
+            <param name="newTeacher">Teacher to create data</param>
+            <returns>List with teachers data</returns>
+        </member>
+        <member name="M:OnlineClassbook.Controllers.TeacherController.DeleteTeacherById(System.Int32)">
+            <summary>
+            Deletes a teacher by id
+            </summary>
+            <param name="id">Teacher id</param>
+            <returns>List with students data</returns>
+        </member>
+        <member name="M:OnlineClassbook.Controllers.TeacherController.UpdateTeacherAddress(System.Int32,OnlineClassbook.DTOs.StudentDTOS.AddressToUpdateDTO)">
+            <summary>
+            Update or create a student's address
+            </summary>
+            <param name="id">Teacher id</param>
+            <param name="updateTeacherAddress">Teacher address to be updated</param>
+        </member>
+        <member name="M:OnlineClassbook.Controllers.TeacherController.AssignTeacherToCourse(System.Int32,System.Int32)">
+            <summary>
+            Assigns a teacher to a course
+            </summary>
+            <param name="id">Teacher id</param>
+            <param name="courseId">Course id</param>
+        </member>
+        <member name="M:OnlineClassbook.Controllers.TeacherController.PromoteTeacher(System.Int32,System.String)">
+            <summary>
+            Promote a teacher
+            </summary>
+            <param name="id">Teacher id</param>
+            <param name="teacherNewRank">Teacher new rank</param>
+            <returns>Promoted teacher</returns>
+        </member>
+        <member name="M:OnlineClassbook.Controllers.TeacherController.GetTeacherGivenMarks(System.Int32)">
+            <summary>
+            Promote a teacher
+            </summary>
+            <param name="teacherId">Teacher id</param>
+            <returns>List of student marks given by the teacher</returns>
         </member>
         <member name="T:OnlineClassbook.DTOs.StudentDTOS.AddressToUpdateDTO">
             <summary>

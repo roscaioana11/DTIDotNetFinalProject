@@ -62,7 +62,7 @@ public class StudentController:ControllerBase
     /// <summary>
     /// Updates a student
     /// </summary>
-    /// <param name="updateStudent"></param>
+    /// <param name="updateStudent">Student to be updated</param>
     /// <returns>List with students data</returns>
     [HttpPatch]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<StudentToGetDTO>))]
@@ -73,8 +73,8 @@ public class StudentController:ControllerBase
     /// <summary>
     /// Update or create a student's address
     /// </summary>
-    /// <param name="id"></param>
-    /// <param name="updateStudentAddress"></param>
+    /// <param name="id">Student id</param>
+    /// <param name="updateStudentAddress">Student address to be updated</param>
     [HttpPut("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status201Created)]
@@ -91,8 +91,8 @@ public class StudentController:ControllerBase
     /// <summary>
     /// Assigns a student to a course
     /// </summary>
-    /// <param name="studentId"></param>
-    /// <param name="courseId"></param>
+    /// <param name="studentId">Student id</param>
+    /// <param name="courseId">Course id</param>
     [HttpGet("assign")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]

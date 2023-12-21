@@ -233,4 +233,19 @@ public class StudentService: IStudentService
         
         return sortedStudents.Select(s => select(s.Student, s.AverageMark)).ToList();
     }
+
+    public async Task<List<CourseToGetDTO>> DeleteCourseById(int courseId)
+    {
+        Course course = await _context.Courses
+                              .FirstOrDefaultAsync(c => c.Id == courseId) 
+                          ?? throw new InvalidIdException($"Student with Id '{courseId}' not found.");
+
+        _context.Courses.Remove(course);
+
+        await _context.SaveChangesAsync();
+
+        return await _context.Courses
+            .Select(c => c.ToDto())
+            .ToListAsync();
+    }
 }

@@ -67,6 +67,9 @@ namespace OnlineClassbook.Migrations
                     b.HasIndex("StudentId")
                         .IsUnique();
 
+                    b.HasIndex("TeacherId")
+                        .IsUnique();
+
                     b.ToTable("Addresses");
                 });
 
@@ -82,7 +85,14 @@ namespace OnlineClassbook.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("TeacherId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("TeacherId")
+                        .IsUnique()
+                        .HasFilter("[TeacherId] IS NOT NULL");
 
                     b.ToTable("Courses");
                 });
@@ -104,6 +114,9 @@ namespace OnlineClassbook.Migrations
                     b.Property<int>("StudentId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("TeacherId")
+                        .HasColumnType("int");
+
                     b.Property<int>("Value")
                         .HasColumnType("int");
 
@@ -112,6 +125,8 @@ namespace OnlineClassbook.Migrations
                     b.HasIndex("CourseId");
 
                     b.HasIndex("StudentId");
+
+                    b.HasIndex("TeacherId");
 
                     b.ToTable("Marks");
                 });
@@ -140,6 +155,26 @@ namespace OnlineClassbook.Migrations
                     b.ToTable("Students");
                 });
 
+            modelBuilder.Entity("OnlineClassbook.Entities.Teacher", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Rank")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Teachers");
+                });
+
             modelBuilder.Entity("CourseStudent", b =>
                 {
                     b.HasOne("OnlineClassbook.Entities.Course", null)
@@ -162,6 +197,21 @@ namespace OnlineClassbook.Migrations
                         .HasForeignKey("OnlineClassbook.Entities.Address", "StudentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("OnlineClassbook.Entities.Teacher", null)
+                        .WithOne("Address")
+                        .HasForeignKey("OnlineClassbook.Entities.Address", "TeacherId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("OnlineClassbook.Entities.Course", b =>
+                {
+                    b.HasOne("OnlineClassbook.Entities.Teacher", "Teacher")
+                        .WithOne("Course")
+                        .HasForeignKey("OnlineClassbook.Entities.Course", "TeacherId");
+
+                    b.Navigation("Teacher");
                 });
 
             modelBuilder.Entity("OnlineClassbook.Entities.Mark", b =>
@@ -176,9 +226,15 @@ namespace OnlineClassbook.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("OnlineClassbook.Entities.Teacher", "Teacher")
+                        .WithMany()
+                        .HasForeignKey("TeacherId");
+
                     b.Navigation("Course");
 
                     b.Navigation("Student");
+
+                    b.Navigation("Teacher");
                 });
 
             modelBuilder.Entity("OnlineClassbook.Entities.Course", b =>
@@ -192,6 +248,14 @@ namespace OnlineClassbook.Migrations
                         .IsRequired();
 
                     b.Navigation("Marks");
+                });
+
+            modelBuilder.Entity("OnlineClassbook.Entities.Teacher", b =>
+                {
+                    b.Navigation("Address")
+                        .IsRequired();
+
+                    b.Navigation("Course");
                 });
 #pragma warning restore 612, 618
         }

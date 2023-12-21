@@ -20,6 +20,7 @@ public class DataContext: DbContext
     public DbSet<Address> Addresses => Set<Address>();
     public DbSet<Mark> Marks => Set<Mark>();
     public DbSet<Course> Courses => Set<Course>();
+    public DbSet<Teacher> Teachers => Set<Teacher>();
     
 //     public bool EnsureCreated() => Database.EnsureCreated();
 //     public bool EnsureDeleted() => Database.EnsureDeleted();

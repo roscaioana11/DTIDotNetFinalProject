@@ -25,4 +25,5 @@ public interface IStudentService
     Task<List<MarkToGetDTO>> GetMarksByCourseIdAndStudentId(int studentId, int courseId);
     Task<double> GetAverageStudentCourseMarks(int studentId, int courseId);
     Task<List<T>> GetStudentOrderByMarksAverage<T>(Func<Student,double,T> select, Sorting sort);
+    Task<List<CourseToGetDTO>> DeleteCourseById(int courseId);
 }

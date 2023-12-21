@@ -34,4 +34,16 @@ public class CourseController:ControllerBase
     [ProducesResponseType(StatusCodes.Status409Conflict, Type = typeof(string))]
     public async Task<ActionResult<CourseToGetDTO>> AddCourse([FromBody] CourseToCreateDTO courseToCreate) => 
         Ok(await _studentService.AddCourse(courseToCreate));
+    
+    /// <summary>
+    /// Deletes a course by id
+    /// </summary>
+    /// <param name="courseId">Teacher id</param>
+    /// <returns>List with courses data</returns>
+    [HttpDelete("courseId")]
+    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(void))]
+    [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
+    public async Task<ActionResult<List<CourseToGetDTO>>> DeleteCourseById(int courseId) =>
+        Ok(await _studentService.DeleteCourseById(courseId));
+    
 }
